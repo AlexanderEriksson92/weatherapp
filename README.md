@@ -9,4 +9,4 @@ En enkel väderapplikation byggd med React och TypeScript som hämtar väderdata
 * Laddnings- och felhantering.
 
 ## 📸 Skärmdump
-
+![WeatherApp Screenshot](screenshot.png)
