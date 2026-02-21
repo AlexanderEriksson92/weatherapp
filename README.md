@@ -9,4 +9,5 @@ En enkel väderapplikation byggd med React och TypeScript som hämtar väderdata
 * Laddnings- och felhantering.
 
 ## 📸 Skärmdump
-![WeatherApp Screenshot](screenshot.png)
+
+<img height="400" alt="WeatherScreen" src="https://github.com/user-attachments/assets/ef002caa-7c97-4ca7-a908-2341b6311695" />
