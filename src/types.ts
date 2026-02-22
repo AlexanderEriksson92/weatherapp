@@ -23,4 +23,4 @@ interface WeatherData {
   };
 }
 
-export default WeatherData;
+export type { WeatherData };
