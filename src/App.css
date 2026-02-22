@@ -29,14 +29,15 @@
 
 /* --- CONTAINER & DYNAMISK BAKGRUND --- */
 .weather-container {
-  min-height: 100vh;
+  height: 100vh; /* Tvinga exakt höjd */
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at top right, #1a1a2e, #020205);
   transition: background 0.8s ease;
-  padding: 20px;
+  padding: 15px;
+  overflow: hidden; /* Förhindra scroll utanför kortet */
 }
 
 /* Teman med lite mer dramatiska färger */
@@ -52,18 +53,22 @@
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 40px;
-  padding: 40px;
+  padding: 25px; /* Minskat från 40px */
   width: 100%;
-  max-width: 480px;
+  max-width: 420px; /* Något smalare */
+  max-height: 95vh; /* Se till att kortet får plats i skärmen */
+  display: flex;
+  flex-direction: column;
   color: var(--text-main);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  overflow-y: auto; /* Om det ändå blir för trångt, scrollar bara innehållet i kortet */
 }
 
 /* --- HEADER & SÖK --- */
 .weather-header {
   display: flex;
   gap: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   width: 100%;
   align-items: center;
 }
@@ -157,7 +162,7 @@
 /* --- NUVARANDE VÄDER --- */
 .current-weather {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .location-info h2 {
