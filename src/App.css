@@ -29,7 +29,7 @@
 
 /* --- CONTAINER & DYNAMISK BAKGRUND --- */
 .weather-container {
-  height: 100vh; /* Tvinga exakt höjd */
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -37,10 +37,9 @@
   background: radial-gradient(circle at top right, #1a1a2e, #020205);
   transition: background 0.8s ease;
   padding: 15px;
-  overflow: hidden; /* Förhindra scroll utanför kortet */
+  overflow: hidden;
 }
 
-/* Teman med lite mer dramatiska färger */
 .weather-container.clouds { background: radial-gradient(circle at top right, #2c3e50, #000000); }
 .weather-container.rain { background: radial-gradient(circle at top right, #16222a, #000000); }
 .weather-container.clear { background: radial-gradient(circle at top right, #1a2a6c, #b21f1f, #fdbb2d); }
@@ -53,22 +52,22 @@
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 40px;
-  padding: 25px; /* Minskat från 40px */
+  padding: 30px; 
   width: 100%;
-  max-width: 420px; /* Något smalare */
-  max-height: 95vh; /* Se till att kortet får plats i skärmen */
+  max-width: 420px;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   color: var(--text-main);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
-  overflow-y: auto; /* Om det ändå blir för trångt, scrollar bara innehållet i kortet */
+  overflow-y: auto;
 }
 
 /* --- HEADER & SÖK --- */
 .weather-header {
   display: flex;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   width: 100%;
   align-items: center;
 }
@@ -91,7 +90,6 @@
 .search-bar:focus-within {
   border-color: var(--neon-blue);
   box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .search-bar input {
@@ -104,23 +102,19 @@
   font-size: 16px;
 }
 
-.search-bar button, .location-btn {
-  background: none;
-  border: none;
-  color: var(--neon-blue);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .location-btn {
   background: rgba(0, 210, 255, 0.1);
+  border: none;
+  color: var(--neon-blue);
   border-radius: 18px;
   width: 54px;
   height: 54px;
   flex-shrink: 0;
+  cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .location-btn:hover {
@@ -129,44 +123,14 @@
   transform: rotate(15deg);
 }
 
-/* --- FÖRSLAGSLISTA --- */
-.suggestions-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin-top: 10px;
-  background: #1a1f2b;
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  list-style: none;
-  padding: 10px 0;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-.suggestions-list li {
-  padding: 12px 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: background 0.2s;
-}
-
-.suggestions-list li:hover {
-  background: rgba(0, 210, 255, 0.1);
-  color: var(--neon-blue);
-}
-
 /* --- NUVARANDE VÄDER --- */
 .current-weather {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px; /* Ökat avstånd ner till stats */
 }
 
 .location-info h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   letter-spacing: -1px;
 }
@@ -176,35 +140,38 @@
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 2px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .main-temp-display {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
+  margin: 45px 0; /* Mer "luft" runt temperaturen */
 }
 
 .main-temp-display h1 {
-  font-size: 7rem;
+  font-size: 7.5rem;
   font-weight: 800;
-  line-height: 1;
-  background: linear-gradient(to bottom, #fff 40%, #666);
+  line-height: 0.9;
+  background: linear-gradient(to bottom, #fff 50%, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .weather-icon {
   color: var(--neon-blue);
-  filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5));
-  margin-bottom: 10px;
+  filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.6));
+  margin-bottom: 15px;
 }
 
 .description-text {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 400;
   color: var(--text-dim);
   text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-top: 10px; /* Mer avstånd från temperaturen */
 }
 
 /* --- DASHBOARD STATS --- */
@@ -213,8 +180,15 @@
   justify-content: space-around;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
-  padding: 20px;
-  border-radius: 25px;
+  padding: 22px;
+  border-radius: 30px;
+  margin-bottom: 40px; /* Mer avstånd ner till forecast */
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stat-item span {
@@ -228,68 +202,54 @@
   color: var(--text-dim);
   font-size: 0.65rem;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-/* --- VERTIKAL 7-DAGARS PROGNOS --- */
+/* --- VERTIKAL 7-DAGARS PROGNOS (MINSKAD) --- */
 .forecast-section {
-  margin-top: 40px;
-  padding-top: 30px;
+  margin-top: 20px;
+  padding-top: 25px;
   border-top: 1px solid var(--glass-border);
 }
 
 .forecast-grid {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px; /* Tighter gap mellan småkorten */
 }
 
 .forecast-mini-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 25px;
+  padding: 10px 20px; /* Mindre padding */
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 20px;
+  border-radius: 15px;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
 }
 
-.forecast-mini-card:hover {
-  background: rgba(0, 210, 255, 0.05);
-  border-color: rgba(0, 210, 255, 0.2);
-  transform: translateX(8px);
+.forecast-mini-card svg {
+  width: 20px; /* Mindre ikoner */
+  height: 20px;
 }
 
 .day-name {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.9rem; /* Mindre text */
   color: var(--text-dim);
-  width: 60px;
+  width: 50px;
 }
 
 .day-temp {
   font-family: 'JetBrains Mono', monospace;
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1rem; /* Mindre text */
   color: var(--neon-blue);
 }
-
-/* --- LADDNING & FEL --- */
-.status-display { padding: 60px 0; text-align: center; }
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(0, 210, 255, 0.1);
-  border-top: 3px solid var(--neon-blue);
-  border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-  margin: 0 auto 20px;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
 
 /* --- RESPONSIVITET --- */
 @media (max-width: 480px) {
   .weather-glass-card { padding: 25px; border-radius: 0; }
-  .main-temp-display h1 { font-size: 5.5rem; }
+  .main-temp-display h1 { font-size: 6rem; }
+  .main-temp-display { margin: 35px 0; }
 }
