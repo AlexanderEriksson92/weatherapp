@@ -1,121 +1,189 @@
-/* --- CONTAINER & DYNAMISK BAKGRUND --- */
+/* --- GOOGLE FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
+
+:root {
+  --neon-blue: #00d2ff;
+  --neon-purple: #9d50bb;
+  --glass-bg: rgba(10, 15, 25, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- FULLSCREEN CONTAINER --- */
 .weather-container {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #05050a; /* Basfärg */
-  transition: background 1.2s ease-in-out;
-  padding: 10px; /* Lite mindre padding för att rädda plats */
-  overflow: hidden; /* Ingen scroll på bakgrunden */
+  overflow: hidden; /* Förhindrar att hela sidan scrollar */
+  transition: background 1s ease;
+  padding: 20px;
 }
 
-/* Subtila väder-teman */
-.weather-container.clouds { background: radial-gradient(circle at top right, #1e272e, #05050a); }
-.weather-container.rain { background: radial-gradient(circle at top right, #0f172a, #020617); }
-.weather-container.clear { background: radial-gradient(circle at top right, #1e3a8a, #05050a); }
-.weather-container.snow { background: radial-gradient(circle at top right, #334155, #0f172a); }
+/* Dynamiska bakgrunder (Subtila men tydliga) */
+.weather-container { background: radial-gradient(circle at top right, #1a1a2e, #020205); }
+.weather-container.clouds { background: radial-gradient(circle at top right, #2c3e50, #000000); }
+.weather-container.rain { background: radial-gradient(circle at top right, #16222a, #000000); }
+.weather-container.clear { background: radial-gradient(circle at top right, #1a2a6c, #0a0a0a); }
+.weather-container.snow { background: radial-gradient(circle at top right, #485563, #000000); }
 
-/* --- HUVUDKORTET --- */
+/* --- GLASKORTET --- */
 .weather-glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 40px;
-  padding: 22px; /* Tajtare padding */
+  padding: 30px;
   width: 100%;
-  max-width: 390px;
-  height: auto;
-  max-height: 96vh; /* Säkerhetsmarginal */
+  max-width: 420px;
+  max-height: 92vh; /* Kortet blir aldrig högre än skärmen */
   display: flex;
   flex-direction: column;
   color: var(--text-main);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
   
-  /* Tvinga bort all scroll */
-  overflow: hidden; 
-  scrollbar-width: none;
+  /* Detta döljer scrollbaren men tillåter scroll inuti kortet om det behövs */
+  overflow-y: auto;
+  scrollbar-width: none; 
 }
+.weather-glass-card::-webkit-scrollbar { display: none; }
 
-/* --- JUSTERADE KOMPONENTER FÖR ATT PASSA SKÄRMEN --- */
+/* --- HEADER & SÖK --- */
 .weather-header {
-  margin-bottom: 15px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
+.search-bar {
+  flex: 1;
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+}
+
+.location-btn {
+  background: rgba(0, 210, 255, 0.1);
+  border: none;
+  color: var(--neon-blue);
+  border-radius: 15px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- NUVARANDE VÄDER (Här ökade vi luften) --- */
 .current-weather {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .location-info h2 {
-  font-size: 1.8rem; /* Något mindre stad-namn */
+  font-size: 2.2rem;
+  font-weight: 800;
 }
 
 .main-temp-display {
-  margin: 20px 0; /* Kraftigt minskat från 45px */
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main-temp-display h1 {
-  font-size: 6rem; /* Perfekt balans för att slippa scroll */
-  background: linear-gradient(to bottom, #fff 70%, #999);
+  font-size: 7.5rem;
+  font-weight: 800;
+  line-height: 0.9;
+  background: linear-gradient(to bottom, #fff 50%, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1;
-}
-
-.weather-icon {
-  margin-bottom: 8px;
-  width: 60px; /* Fast storlek på ikonen */
-  height: 60px;
 }
 
 .description-text {
-  font-size: 1.1rem;
-  margin-top: 5px;
+  font-size: 1.3rem;
+  color: var(--text-dim);
+  text-transform: capitalize;
+  margin-top: 10px;
 }
 
 /* --- STATS --- */
 .stats-row {
-  padding: 15px; /* Mindre padding */
-  border-radius: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-radius: 25px;
+  margin-bottom: 30px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stat-item span {
-  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--neon-blue);
+  font-size: 1.1rem;
 }
 
-/* --- PROGNOS (KOMPAKT) --- */
+.stat-item small {
+  color: var(--text-dim);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* --- PROGNOS --- */
 .forecast-section {
-  margin-top: 5px;
-  padding-top: 15px;
   border-top: 1px solid var(--glass-border);
+  padding-top: 20px;
 }
 
 .forecast-grid {
-  gap: 5px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .forecast-mini-card {
-  padding: 6px 15px; /* Mycket kompaktare rader */
-  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
 }
 
-.day-name, .day-temp {
-  font-size: 0.85rem;
-}
+.day-name { font-weight: 600; color: var(--text-dim); width: 50px; }
+.day-temp { font-family: 'JetBrains Mono', monospace; color: var(--neon-blue); font-weight: 700; }
 
-.forecast-mini-card svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* --- RESPONSIVITET --- */
-@media (max-height: 700px) {
-  /* Fix för mindre laptops/skärmar */
-  .main-temp-display h1 { font-size: 4.5rem; }
-  .main-temp-display { margin: 10px 0; }
-  .forecast-section { display: none; } /* Dölj prognos på extremt låga skärmar */
+/* --- RESPONSIV FIX --- */
+@media (max-width: 480px) {
+  .weather-glass-card { border-radius: 0; max-height: 100vh; }
 }
