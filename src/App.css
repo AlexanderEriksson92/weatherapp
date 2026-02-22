@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Förhindrar att hela sidan scrollar */
+  overflow: hidden; 
   transition: background 1s ease;
   padding: 20px;
 }
@@ -45,13 +45,11 @@
   padding: 30px;
   width: 100%;
   max-width: 420px;
-  max-height: 92vh; /* Kortet blir aldrig högre än skärmen */
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   color: var(--text-main);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
-  
-  /* Detta döljer scrollbaren men tillåter scroll inuti kortet om det behövs */
   overflow-y: auto;
   scrollbar-width: none; 
 }
@@ -182,6 +180,42 @@
 
 .day-name { font-weight: 600; color: var(--text-dim); width: 50px; }
 .day-temp { font-family: 'JetBrains Mono', monospace; color: var(--neon-blue); font-weight: 700; }
+
+/* --- CONTAINER & DYNAMISK BAKGRUND --- */
+.weather-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: background 1.2s ease-in-out; /* Mjuk övergång när vädret ändras */
+  padding: 20px;
+  
+  /* Standardfärg (om inget väder matchar) */
+  background: radial-gradient(circle at top right, #1a1a2e, #020205);
+}
+
+/* Dynamiska teman - Dessa triggas av JS-kod */
+.weather-container.clear { 
+  background: radial-gradient(circle at top right, #1a2a6c, #b21f1f, #fdbb2d) !important; 
+}
+
+.weather-container.clouds { 
+  background: radial-gradient(circle at top right, #3d5a73, #182026) !important; 
+}
+
+.weather-container.rain { 
+  background: radial-gradient(circle at top right, #16222a, #000000) !important; 
+}
+
+.weather-container.snow { 
+  background: radial-gradient(circle at top right, #83a4d4, #b6fbff) !important; 
+}
+
+.weather-container.thunderstorm {
+  background: radial-gradient(circle at top right, #4b1248, #000000) !important;
+}
 
 /* --- RESPONSIV FIX --- */
 @media (max-width: 480px) {
