@@ -45,7 +45,7 @@ interface ForecastData {
 }
 
 // --- KONSTANTER ---
-const API_KEY = 'fe6d82ad06724c0e87c5e3a66bead4da';
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const UNITS = 'metric';
 const LANGUAGE = 'sv';
 
